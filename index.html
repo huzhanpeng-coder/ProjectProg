@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <!-- Custom styles for this template -->
+    <link href="./css/styles.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
+    <link rel="stylesheet" href="./slideshow/css/common.min.css">
+    <link rel="stylesheet" href="./fancybox/source/jquery.fancybox.css?v=2.1.7" type="text/css" media="screen" />
+    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="./fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+    <script type="text/javascript" src="./fancybox/source/jquery.fancybox.pack.js?v=2.1.7"></script>
+    
+    <script>window.jQuery || document.write('<script src="./js/jquery-slim.min.js"><\/script>')</script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+
+    <script src="./slideshow/js/jquery.jdSlider-latest.min.js"></script>
+    
+    <!-- Script taken from: https://codepen.io/piyushpd/pen/gOYvZPG -->
+    <script>
+        function test(){
+            var tabsNewAnim = $('#navbarSupportedContent');
+            var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
+            var actItemAnimate = tabsNewAnim.find('.active');
+            var actWidthNewAnimHeight = actItemAnimate.innerHeight();
+            var actWidthNewAnimWidth = actItemAnimate.innerWidth();
+            var itemPosNewAnimTop = actItemAnimate.position();
+            var itemPosNewAnimLeft = actItemAnimate.position();
+            $(".hori-selector").css({
+                "top":itemPosNewAnimTop.top + "px", 
+                "left":itemPosNewAnimLeft.left + "px",
+                "height": actWidthNewAnimHeight + "px",
+                "width": actWidthNewAnimWidth + "px"
+            });
+            $("#navbarSupportedContent").on("click","li",function(e){
+                $('#navbarSupportedContent ul li').removeClass("active");
+                $(this).addClass('active');
+                var actWidthNewAnimHeight = $(this).innerHeight();
+                var actWidthNewAnimWidth = $(this).innerWidth();
+                var itemPosNewAnimTop = $(this).position();
+                var itemPosNewAnimLeft = $(this).position();
+                $(".hori-selector").css({
+                "top":itemPosNewAnimTop.top + "px", 
+                "left":itemPosNewAnimLeft.left + "px",
+                "height": actWidthNewAnimHeight + "px",
+                "width": actWidthNewAnimWidth + "px"
+                });
+            });
+            }
+            $(function(){
+            setTimeout(function(){ test(); });
+            });
+            $(window).on('resize', function(){
+            setTimeout(function(){ test(); }, 500);
+            });
+            $(".navbar-toggler").click(function(){
+            setTimeout(function(){ test(); });
+            });
+    </script>
+
+    <script>
+
+        /*Script extracted from: https://www.jqueryscript.net/slider/Carousel-Slideshow-jdSlider.html*/
+
+        window.onload = function () {
+            $('.slider').jdSlider({
+                wrap: '.slide-inner',
+                isAuto: true,
+                isLoop: true
+            });
+        };
+
+        /* Fancybox script source: http://www.fancyapps.com/fancybox/ */
+        $(function() {
+            $(".fancybox").fancybox({
+                openEffect	: 'none',
+                closeEffect	: 'none'
+            });
+        });
+
+        /*Responsive menu script source: https://css-tricks.com/examples/ConvertMenuToDropdown/ */
+        $(function() {
+            
+            $("<div></div>", { "id" : "responsiveMenu" }).appendTo("nav")
+            $("<div></div>",{ "class" : "dropdown"}).appendTo("#responsiveMenu")
+            
+            $("<button />", {
+                "class": "btn btn-warning dropdown-toggle btn-block mt-3 btn-lg",
+                "type"   : "button",
+                "data-toggle" : "dropdown",
+                "text"    : "Menu"
+            }).appendTo(".dropdown");
+
+            $("<div />", {
+                "class" : "dropdown-menu",
+                "id" : "dropbutton"
+            }).appendTo(".dropdown");
+
+            $("nav a").each(function() {
+                var el = $(this);
+                $("<a />", {
+                    "class" : "dropdown-item bg-dark text-warning ",
+                    "href"   : el.attr("href"),
+                    "text"    : el.text()
+                }).appendTo("#dropbutton");
+            });
+       
+                
+        });
+    </script>
+
+    <!-- Pages Script-->   
+
+    <script>
+        function showHome () {
+            $("#Home").fadeIn("2500");
+            $("#About").css("display","none");
+            $("#Contact").css("display","none");
+        }
+        function showAbout () {
+            $("#Home").css("display","none");
+            $("#About").fadeIn("2500");
+            $("#Contact").css("display","none");
+        }
+        function showContact () {
+            $("#Home").css("display","none");
+            $("#About").css("display","none");
+            $("#Contact").fadeIn("2500");
+        }
+    
+        /* Script to populate elements in modal from list*/
+        /* Reference: https://www.w3schools.com/js/js_loop_for.asp*/
+        /* Reference: https://stackoverflow.com/questions/7815374/get-element-inside-element-by-class-and-id-javascript */
+    
+        function check(itemselector) {
+
+            if(itemselector=="item1"){var x = document.getElementById("item1");}
+            if(itemselector=="item2"){var x = document.getElementById("item2");}
+            if(itemselector=="item3"){var x = document.getElementById("item3");}
+            if(itemselector=="item4"){var x = document.getElementById("item4");}
+            if(itemselector=="item5"){var x = document.getElementById("item5");}
+            if(itemselector=="item6"){var x = document.getElementById("item6");}
+
+            var content =[];itemImg =[];modalImg = [], fancyImg=[]; modalContent = [];
+            var itemImg = x.getElementsByClassName("itemImage")[0];
+            
+            for (i = 0; i < 3; i++) {
+                content[i]= x.getElementsByClassName("itemDetails")[i];
+                modalContent[i] = document.getElementById("myModal").getElementsByClassName("details")[i];
+            }
+            
+            for (i = 0; i < 5; i++) {
+                itemImg[i] = x.getElementsByClassName("itemImage")[i];
+                modalImg[i] = document.getElementById("myModal").getElementsByClassName("modalImage")[i];
+                fancyImg[i] = document.getElementById("myModal").getElementsByClassName("fancyImage")[i];
+            }
+
+            for (i = 0; i < 3; i++) {modalContent[i].textContent=content[i].textContent;}
+
+            for (i = 0; i < 5; i++) {
+                modalImg[i].src = itemImg[i].src;
+                fancyImg[i].href = itemImg[i].src;
+            }
+        };
+
+        function getFormData( ) {
+            var fieldEmail = $("#fieldEmail").val();
+            var fieldSubject = $("#fieldSubject").val();
+            var fieldMessage = $("#fieldMessage").val();
+            var mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var errors = 0;
+            
+            if ( fieldEmail == "" || mailFormat.test(fieldEmail) == false) {
+                errors = 1;
+                $("#fieldEmailError").addClass('spanError');
+            } else {
+                $("#fieldEmailError").removeClass('spanError');
+            }
+
+            if ( fieldSubject == "") {
+                errors = 2;
+                $("#fieldSubjectError").addClass('spanError');
+            } else {
+                $("#fieldSubjectError").removeClass('spanError');
+            }
+
+            if ( fieldMessage == "") {
+                errors = 3;
+                $("#fieldMessageError").addClass('spanError');
+            } else {
+                $("#fieldMessageError").removeClass('spanError');
+            }
+            
+            if (errors == 0) {
+                //send data to server
+                $('#myEmailConfirmation').modal('show');
+
+                var DataForServer = 'fieldEmail=' + fieldEmail + '&fieldSubject=' + fieldSubject + '&fieldMessage=' + fieldMessage;
+                
+                console.log(DataForServer);
+
+                $.ajax({
+                    type: "POST",
+                    url: "send.php",
+                    data: DataForServer,
+                    success: function(msg) {
+                    if (msg != "") alert(msg);
+                    }
+                });
+
+            } else {
+                $('#myError').modal('show');
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+
+    <div class="container-fluid text-center">
+        <img class="w-50 img-responsive" src="img/logos.jpg">
+        <div class="container-fluid bg-warning w-100 rounded-circle line"></div> 
+    </div> 
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-custom navbar-mainbg">
+        <div class="current">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto menus" >
+                    <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="javascript:void(0); javascript:showHome();"><i class="fas fa-laptop"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0); javascript:showAbout();"><i class="fas fa-address-card"></i>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0); javascript:showContact();"><i class="fas fa-phone-volume"></i>Contact us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home page -->
+    <div id="Home">
+        
+        <!-- Slider item-->
+        <section class="jd-slider slider">
+            <div class="slide-inner">
+                <ul class="slide-area">
+                    <li><br><img class="w-100" src="img/slide1.jpg" ></li>
+                    <li><br><img class="w-100" src="img/slide2.jpg" ></li>
+                    <li><br><img class="w-100" src="img/slide3.jpg" ></li>
+                    <li><br><img class="w-100" src="img/slide4.jpg" ></li>
+                </ul>
+                <a class="prev" href="#"><i class="fas fa-angle-left fa-2x"></i></a>
+                <a class="next" href="#"><i class="fas fa-angle-right fa-2x"></i></a>
+            </div>
+            <div class="controller">
+                <a class="auto" href="#">
+                    <i class="fas fa-play fa-xs"></i>
+                    <i class="fas fa-pause fa-xs"></i>
+                </a>
+                <div class="indicate-area"></div>
+            </div>
+        </section>
+        
+        <main role="main" class="container-fluid ">
+            <div class="row">
+                <div class="col-sm-4">
+                    <!-- First item-->
+                    <div class="container img-thumbnail mt-3 mb-3 items" id="item1" >
+                        <img class="img-thumbnail w-100 mb-5 mt-3 d-inline-block itemImage" src="img/iphone.jpg">
+                        <p class=" text-center text-white h4 itemDetails" >Samsung Galaxy A71 128GB/6GB RAM, 6.7”</p>
+                        <p class="font-weight-bold text-right text-white">from </p> <p class="font-weight-bold text-danger text-right h2 itemDetails">CDN $475.00 </p> 
+                        <p class="descriptions itemDetails"> 
+                            The Galaxy A71 6.7" delivers exquisite colours and with the advanced Octa-core processor and up to 8GB of RAM 
+                            delivers an efficient performance containing features ranging from gaming, posting, streaming and even multi-tasking. 
+                        </p>
+                        <img class="descriptions itemImage" src="img/phone1.jpg">
+                        <img class="descriptions itemImage" src="img/phone2.jpg">
+                        <img class="descriptions itemImage" src="img/phone3.jpg">
+                        <img class="descriptions itemImage" src="img/phone4.jpg">
+                        <div class="text-right">
+                            <button type="button" onclick="javascript:check('item1');" class="btn btn-outline-dark  text-white" data-toggle="modal" data-target="#myModal">View</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-4">
+                    <!-- Second item-->
+                    <div class="container img-thumbnail mt-3 mb-3 items" id="item2" >
+                        <img class="img-thumbnail w-100 mb-5 mt-3 itemImage" src="img/laptop.jpg">
+                        <p class=" text-center text-white h4 itemDetails" >ASUS ROG Strix G15 15.6" Gaming Laptop (Intel Core i5)</p>
+                        <p class="font-weight-bold text-right text-white">from </p> <p class="font-weight-bold text-danger text-right h2 itemDetails">CDN $999.99 </p> 
+                        <p class="descriptions itemDetails"> 
+                            The ASUS ROG Strix G15 is built for gamers with a powerful Intel Core i5 processor, 8GB of RAM, 
+                            and GTX 1650 Ti GPU. It features a 15.6" Full HD display equipped with anti-glare and a 144Hz refresh rate 
+                            for smooth and fluid motion visuals. 
+                        </p>
+                        <img class="descriptions itemImage" src="img/laptop1.jpg">
+                        <img class="descriptions itemImage" src="img/laptop2.png">
+                        <img class="descriptions itemImage" src="img/laptop3.jpg">
+                        <img class="descriptions itemImage" src="img/laptop4.jpg">
+                        <div class="text-right">
+                            <button type="button" onclick="javascript:check('item2');" class="btn btn-outline-dark text-white" data-toggle="modal" data-target="#myModal">View</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-4">
+                    <!-- Third item-->
+                    <div class="container img-thumbnail mt-3 mb-3 items" id="item3" >
+                        <img class="img-thumbnail w-100 mb-5 mt-3 itemImage" src="img/smartwatch.jpg">
+                        <p class=" text-center text-white h4 itemDetails" >Fitbit Versa 2 Special Ed 40mm Smartwatch w</p>
+                        <p class="font-weight-bold text-right text-white">from </p> <p class="font-weight-bold text-danger text-right h2 itemDetails">CDN $219.99 </p> 
+                        <p class="descriptions itemDetails"> 
+                            Step out of your comfort zone and achieve your fitness goals more efficiently with Fitbit Smartwatch!
+                            This device automatically tracks your heart rate, steps taken, calories burned and even your sleeping patterns!
+                            Check our different modals! Dont miss out!
+                        </p>
+                        <img class="descriptions itemImage" src="img/smartwatch1.jpg">
+                        <img class="descriptions itemImage" src="img/smartwatch2.jpg">
+                        <img class="descriptions itemImage" src="img/smartwatch3.jpg">
+                        <img class="descriptions itemImage" src="img/smartwatch4.png">
+                        <div class="text-right">
+                            <button type="button" onclick="javascript:check('item3');" class="btn btn-outline-dark text-white" data-toggle="modal" data-target="#myModal">View</button>
+                        </div>
+                    </div>  
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <!-- Fourth item-->
+                    <div class="container img-thumbnail mt-3 mb-3 items" id="item4" >
+                        <img class="img-thumbnail w-100 mb-5 mt-3 itemImage" src="img/tablet.jpg">
+                        <p class=" text-center text-white h4 itemDetails" >Samsung Galaxy Tab A 8" 32GB Wifi Tablet</p>
+                        <p class="font-weight-bold text-right text-white">from </p> <p class="font-weight-bold text-danger text-right h2 itemDetails">CDN $199.99 </p> 
+                        <p class="descriptions itemDetails"> 
+                            Samsung Galaxy Tab features a sleek, lightweight metal that lets you stay productive boasting its 2GHz quad-core processor, 
+                            2GB of RAM, and 32GB, it lets you to easily stream movies, play games, and access numerous apps. 
+                            
+                        </p>
+                        <img class="descriptions itemImage" src="img/tablet1.jpg">
+                        <img class="descriptions itemImage" src="img/tablet2.jpg">
+                        <img class="descriptions itemImage" src="img/tablet3.jpg">
+                        <img class="descriptions itemImage" src="img/tablet4.jpg">
+                        <div class="text-right">
+                            <button type="button" onclick="javascript:check('item4');" class="btn btn-outline-dark text-white" data-toggle="modal" data-target="#myModal">View</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-4">
+                    <!-- Fifth item-->    
+                    <div class="container img-thumbnail mt-3 mb-3 items" id="item5" >
+                        <img class="img-thumbnail w-100 mb-5 mt-3 itemImage" src="img/camera.jpg">
+                        <p class=" text-center text-white h4 itemDetails" >Canon EOS Rebel SL3 DSLR Camera</p>
+                        <p class="font-weight-bold text-right text-white">from </p> <p class="font-weight-bold text-danger text-right h2 itemDetails">CDN $829.99 </p> 
+                        <p class="descriptions itemDetails"> 
+                            Capture the world around you, from breathtaking landscapes to impressive portraits using stunning images
+                            Canon EOS Rebel is a camera designed for everyone. Those who are new to taking photos and seasoned pros. 
+                            Designed to be incredibly efficient and light, this camera will be your perfect companion anywhere you go. 
+                        </p>
+                        <img class="descriptions itemImage" src="img/camera1.jpg">
+                        <img class="descriptions itemImage" src="img/camera2.jpg">
+                        <img class="descriptions itemImage" src="img/camera3.jpg">
+                        <img class="descriptions itemImage" src="img/camera4.jpg">
+                        <div class="text-right">
+                            <button type="button" onclick="javascript:check('item5');" class="btn btn-outline-dark text-white" data-toggle="modal" data-target="#myModal">View</button>
+                        </div>
+                    </div>  
+
+                </div>
+                <div class="col-sm-4">
+                    <!-- Sixth item-->    
+                    <div class="container img-thumbnail mt-3 mb-3 items" id="item6" >
+                        <img class="img-thumbnail w-100 mb-5 mt-3 itemImage" src="img/mouse.jpg">
+                        <p class=" text-center text-white h4 itemDetails" >Dragon War Thor Blue Sensor Gaming Mouse </p>
+                        <p class="font-weight-bold text-right text-white">from </p> <p class="font-weight-bold text-danger text-right h2 itemDetails">CDN $$62.99 </p> 
+                        <p class="descriptions itemDetails"> 
+                            Steamroll the competition with Dragon War Thor Blue Sensor gaming mouse! This mouse is designed with up to 16000 DPI,  
+                            5 adjustable DPI levels to meet your multiple needs (work or gaming) with over 8 programmable buttons.
+                              
+                        </p>
+                        <img class="descriptions itemImage" src="img/mouse1.jpg">
+                        <img class="descriptions itemImage" src="img/mouse2.jpg">
+                        <img class="descriptions itemImage" src="img/mouse3.jpg">
+                        <img class="descriptions itemImage" src="img/mouse4.jpg">
+                        <div class="text-right">
+                            <button type="button" onclick="javascript:check('item6');" class="btn btn-outline-dark text-white" data-toggle="modal" data-target="#myModal">View</button>
+                        </div>
+                    </div>
+                   
+
+                </div>
+            </div>
+        </main>
+
+
+        <!-- Modal Items-->
+
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-title mt-2 px-5">
+                        <br><p class="details text-center text-white h4"></p>
+                    </div>
+          
+                    <div class="modal-body text-white">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a class="fancybox fancyImage" rel="group" href=""><img id="mainImg" class="img-thumbnail w-100 modalImage" src=""></a>
+                            </div>
+                            <div class="col-md-6">
+                                <br><p class="font-weight-bold details text-right text-danger h5"></p><br>
+                                <button type="button" class="btn btn-outline-dark text-white float-right" data-toggle="modal" data-target="#myConfirmation">Add to Cart</button><br><br>
+                                <button type="button" class="btn btn-danger float-right smallbutton" onclick="$('#myModal').modal('hide');">Close</button><br>
+                                <p class="font-weight-bold h6">About the item</p><br>
+                                <p class="details text-justify h6"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <a class="fancybox fancyImage" rel="group" href=""><img class="img-thumbnail modalImage" src=""></a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a class="fancybox fancyImage" rel="group" href=""><img class="img-thumbnail modalImage" src=""></a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a class="fancybox fancyImage" rel="group" href=""><img class="img-thumbnail modalImage" src=""></a>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a class="fancybox fancyImage" rel="group" href=""><img class="img-thumbnail modalImage" src=""></a>
+                                    </div>       
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+          
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger bigbutton" onclick="$('#myModal').modal('hide');">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Notification -->
+
+        <div class="modal fade" id="myConfirmation">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-title text-white">
+                        <p class="text-center h3 mr-2 ml-2 mt-3">Item Added Successfully!</p>
+                    </div>
+                    <div class="modal-body px-4 text-white">
+                        <p class="text-center h5">Keep browsing our website!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" onclick="$('#myConfirmation').modal('hide');$('#myModal').modal('hide');">Return</button>
+                    </div>
+                </div>
+            </div>        
+        </div>
+
+
+    </div>   
+
+     <!-- About page -->
+    <div id="About">
+        
+        <div class="container-fluid mt-3 ">
+
+            <div class="row text-warning">
+                <div class="container text-center">
+                    <p class="display-4 font-italic font-weight-bold mt-5">Alpha Origin Technology </p>
+                    <p class="display-5 font-italic font-weight-bold text-white mt-5">When performance matters! </p> 
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-md-6">
+                        <div class="container img-thumbnail text-center forms mt-5">
+                            <p class="text-justify h5 text-white text-center font-italic mt-3 mb-3 mr-5 ml-5"> 
+                                Our Goal<br>
+                                <p class="text-justify h1 text-center font-italic text-warning">Striving for Excellence </p>
+                            </p>
+                        </div>
+                    </div>                  
+                    <div class="col-md-6">
+                        <div class="container img-thumbnail text-center forms mt-5">                    
+                            <p class="text-justify h4 text-white text-center font-italic mt-3 mb-3 mr-5 ml-5"> 
+                                Our main goal is to reach out a hand and make digital tools more accessible to everyone at fair prices. 
+                            </p>
+                        </div>  
+                    </div>
+            </div>         
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="container img-thumbnail text-center forms mt-5 mb-5">
+                        <p class="text-justify h5 text-white text-center font-italic mt-3 mb-3 mr-5 ml-5"> 
+                            Our History<br>
+                            <p class="text-justify h1 text-center font-italic text-warning"> Our Experience </p>                           
+                        </p>
+                    </div>
+                </div>                  
+                <div class="col-md-6">
+                    <div class="container img-thumbnail text-center forms mt-5 mb-5">                    
+                        <p class="text-justify h4 text-white text-center font-italic mt-3 mb-3 mr-4 ml-4"> 
+                            Alpha Origin team has been expanding over the years becoming a leading company in the market by
+                            serving customers all across Canada.
+                        </p>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+     <!-- Contact page -->
+    <div id="Contact">
+        
+        <div class="container-fluid mt-3">
+
+            <div class="row">
+                <div class="container img-thumbnail text-center forms mt-5">
+                    <p class="display-3 text-center mt-4 font-weight-bold font-italic text-white">Get in touch!</p><br>
+                    <p class="h5 text-center font-italic font-weight-bold text-warning">Do you have any questions or concerns? Don't hesitate to send us an email! <br> We are available 24/7!</p><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container img-thumbnail mt-5 mb-4 forms">
+                    <p class="display-4 text-center font-italic text-warning mt-5">Contact form</p><br>
+                    <form class="mt-4 mb-5" name="form1" method="post" action="javascript:getFormData();">
+                        <div class="form-group">   
+                            <label class= "text-white font-weight-bold" for="fieldEmail">E-mail:</label><br>
+                            <input class= "form-control" type="text" name="fieldEmail" id="fieldEmail" value="" placeholder="Enter your email" />
+                            <small id="emailHelp" class="form-text text-muted">Your email will be kept strictly confidential</small>
+                            <span class="alert alert-danger font-weight-bold" id="fieldEmailError">*Please enter a proper e-mail address</span>
+                            <br />
+                        </div>     
+                        <div class="form-group"> 
+                            <label class= "text-white font-weight-bold" for="fieldSubject">Subject:</label><br>
+                            <input class= "form-control" type="text" name="fieldSubject" id="fieldSubject" value="" placeholder="Enter the subject"/><br>
+                            <span class="alert alert-danger font-weight-bold" id="fieldSubjectError">*Please enter a subject</span>
+                            <br />
+                        </div>
+                        <div class="form-group"> 
+                            <label class= "text-white font-weight-bold" for="fieldMessage">Message:</label><br>
+                            <textarea class= "form-control" type="text" name="fieldMessage" id="fieldMessage" value="" placeholder="Enter your message"></textarea><br>
+                            <span class="alert alert-danger font-weight-bold" id="fieldMessageError">*Please enter your message</span>
+                            <br />
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-danger">Send!</button>
+                        </div>
+                    </form>
+                </div>       
+            </div>
+
+        </div>
+        
+        <!-- Modal Error -->
+
+        <div class="modal fade" id="myError">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-title text-white ">
+                        <p class="text-center h3 mr-2 ml-2 mt-3">Please fill out the missing fields in the form!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" onclick="$('#myError').modal('hide');">Close</button>
+                    </div>
+                </div>
+            </div>        
+        </div>
+
+        <!-- Modal Notification -->
+
+        <div class="modal fade" id="myEmailConfirmation">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-title text-white">
+                        <p class="text-center h3 mr-2 ml-2 mt-3">Your Email has been sent!</p>
+                    </div>
+                    <div class="modal-body px-4 text-white">
+                        <p class="text-center h5">We will contact you shortly!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" onclick="$('#myEmailConfirmation').modal('hide');">Return</button>
+                    </div>
+                </div>
+            </div>        
+        </div>
+
+    </div>
+</body>
+</html>
